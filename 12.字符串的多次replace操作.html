@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let str = '我的名字是{{name}}，年龄是{{age}}'
+    const reg = /{{\s*([a-zA-Z]+)\s*}}/
+
+    // 第一次匹配
+    const res1 = reg.exec(str)
+    str = str.replace(res1[0], res1[1])
+    console.log(str);
+    // 第二次匹配
+    const res2 = reg.exec(str)
+    str = str.replace(res2[0], res2[1])
+    console.log(str);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="./lib/template-web.js"></script>
+  <script src="./lib/jquery.js"></script>
+</head>
+
+<body>
+  <div id='container'></div>
+
+
+  <script type="text/html" id="tpl-user">
+    <h1>{{name}}---{{age}}</h1>
+    {{@ text}}
+    {{ if flag == 1}}
+    flag等于1
+    {{ else if flag == 0}}
+    flag等于0
+    {{/if}}
+
+    <ul>
+      {{each arr}}
+      <li>索引是：{{$index}},值:{{$value}}</li>
+      {{/each}}
+    </ul>
+
+    <div>注册时间为：{{ regTime| dateFormat }}</div>
+  </script>
+
+
+  <script>
+    const data = { name: 'zs', age: 18, text: '<h3>text</h3>', flag: 2, arr: ['抽烟', '喝酒', '烫头'] };
+
+    const htmlStr = template('tpl-user', data)
+
+    const datee = { regTime: new Date() }
+    template.defaults.imports.dateFormat = (date) => {
+      const y = date.getFullYear();
+      const m = date.getMonth() + 1;
+      const d = date.getDate();
+      return y + "-" + m + "-" + d;
+    };
+
+    $('#container').html(htmlStr)
+  </script>
+</body>
+
+
+
+</html>
